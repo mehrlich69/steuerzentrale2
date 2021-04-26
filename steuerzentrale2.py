@@ -459,6 +459,8 @@ ui.modus_bestellhistorie_alle.clicked.connect(modus_bestellhistorie_alle)
 ui.modus_infotexte.clicked.connect(modus_infotexte)
 ui.modus_freitext.clicked.connect(modus_freitext)
 
+ui.infotext.setStyleSheet("background-color:white")
+
 klinik_dic = kliniken_einlesen()
 
 ui.kliniken.addItems(list(klinik_dic.keys()))
