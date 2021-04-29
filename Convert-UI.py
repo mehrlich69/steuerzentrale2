@@ -6,6 +6,6 @@
 
 from PyQt5 import uic
 
-uic.compileUiDir("/Users/markusehrlich/Python-Entwicklung/PyQt/Steuerzentrale2/ui")
+uic.compileUiDir("/Users/markusehrlich/Python-Entwicklung/Steuerzentrale2/ui")
 #uic.compileUiDir("Pi_Temp_Monitor")
 #uic.compileUiDir("Pi_Temp_Monitor_SmallDisplay")

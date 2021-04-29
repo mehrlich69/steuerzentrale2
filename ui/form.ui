@@ -245,13 +245,18 @@ p, li { white-space: pre-wrap; }
      <rect>
       <x>10</x>
       <y>20</y>
-      <width>227</width>
+      <width>251</width>
       <height>101</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
       <widget class="QRadioButton" name="modus_infotexte">
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
        <property name="text">
         <string>Info-Texte</string>
        </property>
@@ -262,6 +267,11 @@ p, li { white-space: pre-wrap; }
      </item>
      <item>
       <widget class="QRadioButton" name="modus_freitext">
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
        <property name="text">
         <string>aktuelle Freitext-Bestellungen</string>
        </property>
@@ -269,6 +279,11 @@ p, li { white-space: pre-wrap; }
      </item>
      <item>
       <widget class="QRadioButton" name="modus_bestellhistorie">
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
        <property name="text">
         <string>Bestellhistorie Klinik-&gt; Stationen</string>
        </property>
@@ -276,6 +291,11 @@ p, li { white-space: pre-wrap; }
      </item>
      <item>
       <widget class="QRadioButton" name="modus_bestellhistorie_alle">
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
        <property name="text">
         <string>Bestellhistorie alle Kliniken</string>
        </property>
