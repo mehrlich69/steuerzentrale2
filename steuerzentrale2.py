@@ -20,13 +20,17 @@
 # Bis auf Qt5 werden nur Standardbibliotheken verwendet
 # (c) Dr. Markus Ehrlich, dona GmbH&CoKG
 #
-# Version 0.5, 04.10.20
-# Version 0.6, 07.10.20: Speichern der Info-Texte wird mit Messagebox bestätigt.
-# Version 0.7, 15.10.20: Link-Button Nutzerverwaltung und KH-Online
-# Version 0.8, 17.04.21: Button "grün" für Info-Textgestaltung hinzugefügt, Versionsnummer in Window-Title
-# Version 0.81, 23.04.21: Config-File wird relativ zum Working-Dir ("Path") eingelesen
-# Version 0.9, 23.04.21: Arbeitsmodus "Bestellhistorie alle Kliniken" hinzugefügt um alle Bestellungen aller
+# Version 0.5 04.10.20
+# Version 0.6 07.10.20: Speichern der Info-Texte wird mit Messagebox bestätigt.
+# Version 0.7 15.10.20: Link-Button Nutzerverwaltung und KH-Online
+# Version 0.8 17.04.21: Button "grün" für Info-Textgestaltung hinzugefügt, Versionsnummer in Window-Title
+# Version 0.81 23.04.21: Config-File wird relativ zum Working-Dir ("Path") eingelesen
+# Version 0.9 23.04.21: Arbeitsmodus "Bestellhistorie alle Kliniken" hinzugefügt um alle Bestellungen aller
 #                        Kliniken anzuzeigen.
+# Version 0.91 29.04.21: Schriftart der Arbeitsmodi verkleinert
+# Version 0.92 02.11.21: BUGFIX: Bestellhistorie für eine Station wurde die Stationsauswahl in Grossbuchstaben
+#                        umgewandelt, da die Historie immer in GB gespeichert wird. Hat insbesondere in der Stadt-APO
+#                        dazu geführt, dass die Funktion Bestellhistorie Stationen nichts angezeigt hat.
 
 import sys
 import os
@@ -36,7 +40,7 @@ from ui.form import Ui_qtWindow #aus den Unterordner ui wird form.py mit den Des
 from configparser import ConfigParser
 from pathlib import Path
 
-version = "v0.9"
+version = "v0.92"
 
 # *
 # Es folgen die Funktionen, die den verschiedenen Push-Buttons für das Anklicken zugeordnet sind
@@ -192,9 +196,14 @@ def stationen_auswahl():
         # jüngste Bestellung zuerst (=reverse)
         files_sorted = sorted(os.listdir(), key=os.path.getmtime, reverse=True)
 
+        # In der Bestellhistorie wird die Station in Grossbuchstaben gespeichert, z.B.
+        # MAR01-48w4795874.html daher muss die Stationaauswahl in Grossbuchstaben gewandelt werden
+        # da sonst keine Dateien gefunden werden
+        st_auswahl_upper = st_auswahl.upper()
+
         # die files_sorted Liste enthält alle Files des Ordners. Es werden jetzt nur html Files die mit der
         # ausgewählten Station beginnen z.B. 961-123456789.html
-        historien_filenames = [f for f in files_sorted if (f.endswith('.html')) and (f.startswith(st_auswahl + "-"))]
+        historien_filenames = [f for f in files_sorted if (f.endswith('.html')) and (f.startswith(st_auswahl_upper + "-"))]
 
         # die Liste historien_filenames enthält alle vergangenen Bestellungen der gewählten Station.
         # diese Bestelldateien werden nacheinander in das TextFeld geladen ("insertHtml")
@@ -268,6 +277,8 @@ def kliniken_einlesen():
         stationen = [x for x in stationen if x]
         # Die Liste der Stationen wird jetzt der Klinik im Dict zugeordnet
         klinik_dic[klinik] = stationen
+
+        print(klinik_dic)
 
     return klinik_dic
 
