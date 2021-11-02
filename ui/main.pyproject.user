@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.12.2, 2021-04-23T12:21:33. -->
+<!-- Written by QtCreator 4.12.2, 2021-04-29T11:12:24. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -153,12 +153,12 @@
     </valuelist>
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">main2</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">PythonEditor.RunConfiguration./Users/markusehrlich/Python-Entwicklung/PyQt/Steuerzentrale2/ui/main.py</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">/Users/markusehrlich/Python-Entwicklung/PyQt/Steuerzentrale2/ui/main.py</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">main</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">PythonEditor.RunConfiguration./Users/markusehrlich/Python-Entwicklung/steuerzentrale2/ui/main.py</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">/Users/markusehrlich/Python-Entwicklung/steuerzentrale2/ui/main.py</value>
     <value type="bool" key="PythonEditor.RunConfiguation.Buffered">false</value>
-    <value type="QString" key="PythonEditor.RunConfiguation.Interpreter">{2ceea507-6f3e-45ca-8e07-351924933018}</value>
-    <value type="QString" key="PythonEditor.RunConfiguation.Script">/Users/markusehrlich/Python-Entwicklung/PyQt/Steuerzentrale2/ui/main.py</value>
+    <value type="QString" key="PythonEditor.RunConfiguation.Interpreter">{a7c6d80e-9c24-4d91-8b5c-77b86c12b352}</value>
+    <value type="QString" key="PythonEditor.RunConfiguation.Script">/Users/markusehrlich/Python-Entwicklung/steuerzentrale2/ui/main.py</value>
     <value type="QString" key="RunConfiguration.Arguments"></value>
     <value type="bool" key="RunConfiguration.Arguments.multi">false</value>
     <value type="QString" key="RunConfiguration.OverrideDebuggerStartup"></value>
@@ -168,7 +168,7 @@
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
     <value type="QString" key="RunConfiguration.WorkingDirectory"></value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/Users/markusehrlich/Python-Entwicklung/PyQt/Steuerzentrale2/ui</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/Users/markusehrlich/Python-Entwicklung/steuerzentrale2/ui</value>
    </valuemap>
    <value type="int" key="ProjectExplorer.Target.RunConfigurationCount">1</value>
   </valuemap>
