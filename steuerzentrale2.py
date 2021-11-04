@@ -31,6 +31,9 @@
 # Version 0.92 02.11.21: BUGFIX: Bestellhistorie für eine Station wurde die Stationsauswahl in Grossbuchstaben
 #                        umgewandelt, da die Historie immer in GB gespeichert wird. Hat insbesondere in der Stadt-APO
 #                        dazu geführt, dass die Funktion Bestellhistorie Stationen nichts angezeigt hat.
+# Version 0.93 04.11.21: Zusätzliche Option zur Anzeige der Freitexte (Sonderanforderungen): entweder der gesamte
+#                        Bestelltext oder nur die Sonderanforderungen (Wunsch der Stadt-Apo). Schalter in der INI-Datei
+#                        [OPTIONS] nur_sonderanforderungen = True oder False
 
 import sys
 import os
@@ -40,7 +43,7 @@ from ui.form import Ui_qtWindow #aus den Unterordner ui wird form.py mit den Des
 from configparser import ConfigParser
 from pathlib import Path
 
-version = "v0.92"
+version = "v0.93"
 
 # *
 # Es folgen die Funktionen, die den verschiedenen Push-Buttons für das Anklicken zugeordnet sind
@@ -278,8 +281,6 @@ def kliniken_einlesen():
         # Die Liste der Stationen wird jetzt der Klinik im Dict zugeordnet
         klinik_dic[klinik] = stationen
 
-        print(klinik_dic)
-
     return klinik_dic
 
 def modus_bestellhistorie():
@@ -400,8 +401,17 @@ def modus_freitext():
         except IOError as error:
             message_box(str(error))
             sys.exit(error)
-
-        ui.infotext.insertPlainText(plain_text)
+        # in der INI-Datei wird unter OPTIONS festgelegt, ob der gesamte Bestelltext oder nur die
+        # Sonderanforderungen angezeigt werden sollen
+        if nur_sonderanforderungen:
+            # der eingelesene Text der Bestellung wird am Begriff "Sonderanforderung" gespalten
+            # und die zweite Hälfte (=Sonderanforderungen) behalten. Da das Trennwort dabei
+            # verloren geht, wird es wieder vorangestellt
+            plain_text = "Sonderanforderungen:\n" + plain_text.split("Sonderanforderung:", 1)[-1]
+        ui.infotext.insertPlainText("---------------------------------------\n")
+        ui.infotext.insertPlainText(files)
+        ui.infotext.insertPlainText("\n---------------------------------------\n")
+        ui.infotext.insertPlainText(plain_text + "\n")
 
     ui.infotext.repaint()
 
@@ -418,12 +428,13 @@ configfile = f'{filepath}/steuerzentrale.ini'
 config = ConfigParser()
 config.read(configfile)
 
-
 info_path = config.get('Pfade', 'info_path')
 historien_path = config.get('Pfade', 'historien_path')
 freitext_path = config.get('Pfade', 'freitext_path')
 khonline_link = config.get('URL', 'khonline_link')
 nutzerverwaltung_link = config.get('URL', 'nutzerverwaltung_link')
+# eval wandelt den True oder False-String aus der INI-Datei in echte Boolean Werte um
+nur_sonderanforderungen = eval(config.get('OPTIONS', 'nur_sonderanforderungen'))
 
 app = QtWidgets.QApplication(sys.argv)
 
