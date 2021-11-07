@@ -34,6 +34,8 @@
 # Version 0.93 04.11.21: Zusätzliche Option zur Anzeige der Freitexte (Sonderanforderungen): entweder der gesamte
 #                        Bestelltext oder nur die Sonderanforderungen (Wunsch der Stadt-Apo). Schalter in der INI-Datei
 #                        [OPTIONS] nur_sonderanforderungen = True oder False
+# Version 0.93b 07.11.21 Bugfix: Bestellungen ohne Sonderanforderungen werden bei gesetzter nur_sonderanforderungen
+#                        OPTION im Modus "aktuelle Freitext-Anforderungen" nun nicht mehr angezeigt
 
 import sys
 import os
@@ -404,13 +406,16 @@ def modus_freitext():
         # in der INI-Datei wird unter OPTIONS festgelegt, ob der gesamte Bestelltext oder nur die
         # Sonderanforderungen angezeigt werden sollen
         if nur_sonderanforderungen:
+            # wenn es gar keine Sonderanforderung gibt diese Bestelldatei überspringen
+            if "Sonderanforderung:" not in plain_text:
+                continue
             # der eingelesene Text der Bestellung wird am Begriff "Sonderanforderung" gespalten
             # und die zweite Hälfte (=Sonderanforderungen) behalten. Da das Trennwort dabei
             # verloren geht, wird es wieder vorangestellt
             plain_text = "Sonderanforderungen:\n" + plain_text.split("Sonderanforderung:", 1)[-1]
-        ui.infotext.insertPlainText("---------------------------------------\n")
+        ui.infotext.insertPlainText("----------------------------------------------\n")
         ui.infotext.insertPlainText(files)
-        ui.infotext.insertPlainText("\n---------------------------------------\n")
+        ui.infotext.insertPlainText("\n----------------------------------------------\n")
         ui.infotext.insertPlainText(plain_text + "\n")
 
     ui.infotext.repaint()
